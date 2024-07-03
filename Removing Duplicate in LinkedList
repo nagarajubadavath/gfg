@@ -1,0 +1,57 @@
+//Remove the Duplicate elements from the unsorted LinkedList
+//Approach 1:By solving it through TC:O(n^2) using to while loops
+
+Node curr=head;
+if(head==null){
+return null;
+}
+while(curr!=null){
+Node temp=curr.next;
+while(temp!=null){
+if(temp.data!=curr.data){
+temp=temp.next;
+}else{
+curr.next=temp.next;
+temp=temp.next;
+}
+}
+curr=curr.next;
+}
+return head;
+
+
+//Approach 2:By solving it through first sort the linkedlist which takes o(nlogn) and then follow the algorithm of removing duplicates of sorted linkedlist 
+//the TC:o(nlogn)
+
+
+
+
+//Approach 3:By using Hash we can achieve to remove the duplicates from linkedlist in TC:O(n)
+
+
+class Solution
+{
+    //Function to remove duplicates from unsorted linked list.
+    public Node removeDuplicates(Node head) 
+    {
+         // Your code here
+         HashSet<Integer> visited=new HashSet<>();
+         Node curr=head;
+         Node prev=null;
+         if(head==null){
+             return null;
+         }
+         while(curr!=null){
+             if(visited.contains(curr.data)){
+                 prev.next=curr.next;
+                 curr=curr.next;
+             }
+             else{
+                 visited.add(curr.data);
+                 prev=curr;
+                 curr=curr.next;
+             }
+         }
+         return head;
+    }
+}
