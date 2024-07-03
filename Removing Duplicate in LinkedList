@@ -55,3 +55,45 @@ class Solution
          return head;
     }
 }
+
+//Removing the all occurence duplicate elements from the sorted linkedlsit
+//TC:O(n)
+
+class Solution {
+    public Node removeAllDuplicates(Node head) {
+        // code here
+        Node temp=head;
+        Node prev=null;
+        if(head==null){
+            return null;
+        }
+        
+        while(temp!=null)
+        {
+            int count=0;
+            while(temp!=null && temp.next!=null)
+            {
+                if(temp.data==temp.next.data){
+                    temp=temp.next;
+                    count++;
+                }else{
+                    break;
+                }
+            }
+            if(count>0){
+                if(prev!=null)
+                {
+                    prev.next=temp.next;
+                    temp=prev.next;
+                }else{
+                    head=temp.next;
+                    temp=head;
+                }
+            }else{
+                prev=temp;
+                temp=temp.next;
+            }
+        }
+        return head;
+    }
+}
